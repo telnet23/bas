@@ -1,6 +1,5 @@
 7000  REM  IEEE 754 - Binary to Decimal
 7010  CLS
-7020  PRINT SHOW$;
 7030  PRINT "Enter a blank line to return."
 
 7040  PRINT

@@ -1,6 +1,5 @@
 6000  REM  IEEE 754 - Decimal to Binary
 6010  CLS
-6020  PRINT SHOW$;
 6030  PRINT "Enter a blank line to return."
 6040  PRINT "Note: Only normal numbers are supported."
 6140  PRINT
