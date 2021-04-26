@@ -1,0 +1,34 @@
+10 REM Base64 Encode in BASIC
+20 REM https://github.com/telnet23
+30 REM 26 April 2021
+40 INPUT S$
+50 K = 1
+60 L = 0
+70 DIM Q(4)
+80 X = ASC(MID$(S$, K, 1))
+90 Q(1) = INT(X / 4)
+100 Q(2) = (X AND 3) * 16
+110 Q(3) = -1
+120 Q(4) = -1
+130 IF K + 1 > LEN(S$) THEN GOTO 210
+140 Y = ASC(MID$(S$, K + 1, 1))
+150 Q(2) = Q(2) + INT(Y / 16)
+160 Q(3) = (Y AND 15) * 4
+170 IF K + 2 > LEN(S$) THEN GOTO 210
+180 Z = ASC(MID$(S$, K + 2, 1))
+190 Q(3) = Q(3) + INT(Z / 64)
+200 Q(4) = Z AND 63
+210 J = 1
+220 IF Q(J) < 0 THEN PRINT "="; : GOTO 280
+230 IF Q(J) < 26 THEN PRINT CHR$(65 + Q(J)); : GOTO 280
+240 IF Q(J) < 52 THEN PRINT CHR$(97 + Q(J) - 26); : GOTO 280
+250 IF Q(J) < 62 THEN PRINT CHR$(48 + Q(J) - 52); : GOTO 280
+260 IF Q(J) = 62 THEN PRINT "+"; : GOTO 280
+270 IF Q(J) = 63 THEN PRINT "/"; : GOTO 280
+280 L = L + 1
+290 IF L = 76 THEN PRINT : L = 0
+300 J = J + 1
+310 IF J <= 4 THEN GOTO 220
+320 K = K + 3
+330 IF K <= LEN(S$) THEN GOTO 80
+340 IF L > 0 THEN PRINT
